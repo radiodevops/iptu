@@ -1,0 +1,21 @@
+# Environment files
+.env
+
+# Sensitive data
+*.key
+*.pem
+*.cert
+
+# IDE files
+.idea/
+.vscode/
+
+# Docker/Mongo data
+data/
+
+# Log files
+*.log
+
+# Backup files
+backups/
+
