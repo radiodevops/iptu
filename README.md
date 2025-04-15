@@ -16,15 +16,20 @@ This repository contains educational materials, examples, and exercises for IT P
 │   ├── monitoring/             # Prometheus and Grafana configuration
 │   └── README.md               # Week 9 specific documentation
 │
-└── week10/                     # System Administration
-    ├── log_collection/         # Log collection tools and examples
-    ├── mail_system/            # Mail system configuration
-    ├── printing/               # Printing system setup
-    ├── syslog/                 # Syslog configuration
-    ├── system_time/            # System time management
-    ├── systemd_journal/        # Systemd journal usage
-    ├── time_synchronization/   # NTP and time sync configuration
-    └── timedatectl_and_timesyncd/ # Timedate control utilities
+├── week10/                     # System Administration
+│   ├── log_collection/         # Log collection tools and examples
+│   ├── mail_system/            # Mail system configuration
+│   ├── printing/               # Printing system setup
+│   ├── syslog/                 # Syslog configuration
+│   ├── system_time/            # System time management
+│   ├── systemd_journal/        # Systemd journal usage
+│   ├── time_synchronization/   # NTP and time sync configuration
+│   └── timedatectl_and_timesyncd/ # Timedate control utilities
+│
+├── week11/                     # Linux Command Reference & Practice
+│   ├── README.md               # Linux command guide (ldd, ldconfig, ps, kill, nice, jobs)
+│
+└── ...
 ```
 
 ## Week 09: Multi-Database School Management System
@@ -67,6 +72,25 @@ Week 10 covers various aspects of Linux system administration, including:
 
 Each topic includes practical examples, commands, and configuration guidelines for Linux systems.
 
+## Week 11: Linux Command Reference & Practice
+
+Week 11 provides a comprehensive guide and hands-on reference for essential Linux commands related to process and library management. The covered commands include:
+
+- `ldd`: Display shared library dependencies of executables
+- `ldconfig`: Configure dynamic linker run-time bindings
+- `ps`: Show information about running processes
+- `kill`: Send signals to processes (e.g., terminate)
+- `nice`: Run programs with modified scheduling priority
+- `jobs`: Manage background and foreground jobs in the shell
+
+The [Week 11 README](/week11/README.md) contains:
+- Detailed explanations of each command
+- Usage examples and options
+- Troubleshooting tips
+- Advanced scenarios (combining commands for system management)
+
+This week is ideal for anyone looking to strengthen their Linux command-line skills for system administration or troubleshooting.
+
 ## Getting Started
 
 1. Clone this repository:
@@ -80,6 +104,8 @@ Each topic includes practical examples, commands, and configuration guidelines f
    cd week09  # For database management
    # OR
    cd week10  # For system administration
+   # OR
+   cd week11  # For Linux command reference
    ```
 
 3. Follow the instructions in the respective README.md files for each week.
@@ -87,7 +113,7 @@ Each topic includes practical examples, commands, and configuration guidelines f
 ## Prerequisites
 
 - Docker and Docker Compose (for Week 9)
-- Linux environment (for Week 10)
+- Linux environment (for Week 10 and Week 11)
 - Basic knowledge of command line operations
 
 ## Contributing
@@ -106,4 +132,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Last Updated
 
-April 9, 2025
+April 15, 2025
