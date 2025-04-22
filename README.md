@@ -29,6 +29,9 @@ This repository contains educational materials, examples, and exercises for IT P
 ├── week11/                     # Linux Command Reference & Practice
 │   ├── README.md               # Linux command guide (ldd, ldconfig, ps, kill, nice, jobs)
 │
+├── week12/                     # Linux Command Line Essentials
+│   ├── README.md               # Enhanced Linux command-line examples (cat, grep, sed, awk, find, ...)
+│
 └── ...
 ```
 
@@ -91,6 +94,18 @@ The [Week 11 README](/week11/README.md) contains:
 
 This week is ideal for anyone looking to strengthen their Linux command-line skills for system administration or troubleshooting.
 
+## Week 12: Linux Command Line Essentials
+
+Week 12 expands your practical Linux command-line skills with a focus on both basic and advanced usage of essential tools. The [Week 12 README](/week12/README.md) features:
+
+- Enhanced and creative examples for:
+  - `cat`, `grep`, `sed`, `awk`, `find`, `ls`, `mkdir`, `touch`, `rm`, `rmdir`, `cp`, `mv`, `chmod`, `chown`
+- Real-world scenarios and best practices
+- Tips for combining commands and scripting
+- Encouragement for experimentation and command-line mastery
+
+This section is perfect for students who want to move beyond the basics and become power users of the Linux shell.
+
 ## Getting Started
 
 1. Clone this repository:
@@ -106,6 +121,8 @@ This week is ideal for anyone looking to strengthen their Linux command-line ski
    cd week10  # For system administration
    # OR
    cd week11  # For Linux command reference
+   # OR
+   cd week12  # For Linux command line essentials
    ```
 
 3. Follow the instructions in the respective README.md files for each week.
