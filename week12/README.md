@@ -24,6 +24,8 @@ This repository demonstrates the usage of essential Linux command-line tools. Be
 - [mv](#mv)
 - [chmod](#chmod)
 - [chown](#chown)
+- [fork() System Call (Advanced Linux)](#fork-system-call-advanced-linux)
+- [Compiling and Running C Code on Ubuntu 24.04](#compiling-and-running-c-code-on-ubuntu-2404)
 
 ---
 
@@ -276,6 +278,126 @@ Change owner and group of a file.
 sudo chown -R $USER:$USER /var/www/html
 ```
 Recursively change ownership of all files and directories under `/var/www/html` to the current user.
+
+---
+
+## fork() System Call (Advanced Linux)
+
+The `fork()` system call is fundamental in Unix/Linux for creating new processes. It duplicates the calling process, allowing for parallel execution and is widely used in systems programming.
+
+**Basic Example (C):**
+```c
+#include <stdio.h>
+#include <unistd.h>
+
+int main() {
+    pid_t pid = fork();
+    if (pid == 0) {
+        // Child process
+        printf("Hello from child!\n");
+    } else if (pid > 0) {
+        // Parent process
+        printf("Hello from parent!\n");
+    } else {
+        perror("fork");
+    }
+    return 0;
+}
+```
+This program prints messages from both parent and child processes.
+
+**Advanced Example 1: Parallel Child Processes**
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
+
+int main() {
+    for (int i = 0; i < 3; i++) {
+        pid_t pid = fork();
+        if (pid == 0) {
+            printf("Child %d (PID: %d)\n", i, getpid());
+            exit(0);
+        }
+    }
+    // Parent waits for all children
+    for (int i = 0; i < 3; i++) {
+        wait(NULL);
+    }
+    printf("Parent done.\n");
+    return 0;
+}
+```
+This code spawns three child processes and the parent waits for them to finish.
+
+**Advanced Example 2: Fork and Execute a Shell Command**
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
+
+int main() {
+    char *cmd[] = {"ls", "-l", NULL};
+    pid_t pid = fork();
+    if (pid == 0) {
+        execvp(cmd[0], cmd); // Child runs 'ls -l'
+        perror("execvp failed");
+        exit(1);
+    } else if (pid > 0) {
+        wait(NULL); // Parent waits
+        printf("Listing complete.\n");
+    }
+    return 0;
+}
+```
+This program forks a child to run `ls -l` and the parent waits for it to finish.
+
+**Advanced Example 3: Fork Bomb (Do NOT Run!)**
+```sh
+:(){ :|:& };:
+```
+This infamous shell fork bomb will quickly exhaust system resources by recursively spawning processes. **Never run this on a real system!**
+
+---
+
+## Compiling and Running C Code on Ubuntu 24.04
+
+If you're new to C programming, here’s how you can compile and run the provided C code examples on Ubuntu 24.04.
+
+### 1. Install Required Packages
+
+You need the GNU Compiler Collection (GCC). The recommended package is `build-essential`, which includes `gcc` and other necessary development tools.
+
+```sh
+sudo apt update
+sudo apt install build-essential
+```
+
+### 2. Compiling a C Program
+
+Save your C code to a file, for example `fork_example.c`.
+
+To compile:
+```sh
+gcc fork_example.c -o fork_example
+```
+- `gcc` is the GNU C Compiler.
+- `fork_example.c` is your source file.
+- `-o fork_example` names the output executable `fork_example`.
+
+### 3. Running the Program
+
+After compiling, run your program with:
+```sh
+./fork_example
+```
+
+### 4. Quick Reference
+- Write your code in a file ending with `.c` (e.g., `myprog.c`).
+- Compile with `gcc myprog.c -o myprog`
+- Run with `./myprog`
 
 ---
 
