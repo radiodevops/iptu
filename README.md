@@ -32,6 +32,11 @@ This repository contains educational materials, examples, and exercises for IT P
 ├── week12/                     # Linux Command Line Essentials
 │   ├── README.md               # Enhanced Linux command-line examples (cat, grep, sed, awk, find, ...)
 │
+├── week13/                     # Linux Security Hands-On Practice
+│   ├── Linux-Security-Ubuntu.md # Security hands-on guide for Ubuntu 24.04
+│   ├── Linux-Security-RH.md     # Security hands-on guide for Alma Linux / RHEL
+│   └── README.md                # Landing page for Linux security guides
+│
 └── ...
 ```
 
@@ -106,6 +111,27 @@ Week 12 expands your practical Linux command-line skills with a focus on both ba
 
 This section is perfect for students who want to move beyond the basics and become power users of the Linux shell.
 
+## Week 13: Linux Security Hands-On Practice
+
+Week 13 provides practical, hands-on security exercises for two major Linux families:
+
+- **[Linux-Security-Ubuntu.md](./week13/Linux-Security-Ubuntu.md)**: Step-by-step security tasks for Ubuntu 24.04 (Debian-based systems)
+- **[Linux-Security-RH.md](./week13/Linux-Security-RH.md)**: Step-by-step security tasks for Alma Linux / RHEL (Red Hat-based systems)
+
+Each guide covers:
+- User and group management
+- File permissions
+- Docker installation and usage
+- Firewall configuration
+- Security auditing
+- System hardening (with actionable, hands-on steps)
+
+Refer to the landing page in `week13/README.md` for more details and to select the appropriate guide for your environment.
+
+---
+
+For questions, improvements, or additional scenarios, please contact the instructor or open an issue in your course repository.
+
 ## Getting Started
 
 1. Clone this repository:
@@ -123,6 +149,8 @@ This section is perfect for students who want to move beyond the basics and beco
    cd week11  # For Linux command reference
    # OR
    cd week12  # For Linux command line essentials
+   # OR
+   cd week13  # For Linux security hands-on practice
    ```
 
 3. Follow the instructions in the respective README.md files for each week.
