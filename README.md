@@ -37,6 +37,13 @@ This repository contains educational materials, examples, and exercises for IT P
 │   ├── Linux-Security-RH.md     # Security hands-on guide for Alma Linux / RHEL
 │   └── README.md                # Landing page for Linux security guides
 │
+├── week14/                     # WordPress Stack with Docker Compose
+│   ├── docker-compose.yml      # Docker services configuration
+│   ├── nginx.conf             # Nginx reverse proxy configuration
+│   ├── .env                   # Environment variables
+│   ├── almalinux_setup.md     # AlmaLinux installation guide
+│   └── ubuntu_setup.md        # Ubuntu 24.04 installation guide
+│
 └── ...
 ```
 
@@ -128,6 +135,25 @@ Each guide covers:
 
 Refer to the landing page in `week13/README.md` for more details and to select the appropriate guide for your environment.
 
+## Week 14: WordPress Stack with Docker Compose
+
+Week 14 demonstrates setting up a modern WordPress stack using Docker Compose, featuring:
+
+- Nginx reverse proxy configuration
+- WordPress with PHP-FPM
+- MySQL database integration
+- Redis caching layer
+- Installation guides for both Ubuntu 24.04 and AlmaLinux
+
+The setup includes:
+- Complete Docker Compose configuration
+- Nginx as a reverse proxy
+- Environment variable management
+- Performance optimization
+- Security considerations
+
+For detailed instructions and setup guides, see the [Week 14 README](/week14/README.md).
+
 ---
 
 For questions, improvements, or additional scenarios, please contact the instructor or open an issue in your course repository.
@@ -151,6 +177,8 @@ For questions, improvements, or additional scenarios, please contact the instruc
    cd week12  # For Linux command line essentials
    # OR
    cd week13  # For Linux security hands-on practice
+   # OR
+   cd week14  # For WordPress stack with Docker Compose
    ```
 
 3. Follow the instructions in the respective README.md files for each week.
