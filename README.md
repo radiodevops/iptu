@@ -39,10 +39,14 @@ This repository contains educational materials, examples, and exercises for IT P
 │
 ├── week14/                     # WordPress Stack with Docker Compose
 │   ├── docker-compose.yml      # Docker services configuration
-│   ├── nginx.conf             # Nginx reverse proxy configuration
-│   ├── .env                   # Environment variables
-│   ├── almalinux_setup.md     # AlmaLinux installation guide
-│   └── ubuntu_setup.md        # Ubuntu 24.04 installation guide
+│   ├── nginx.conf              # Nginx reverse proxy configuration
+│   ├── .env                    # Environment variables
+│   ├── almalinux_setup.md      # AlmaLinux installation guide
+│   └── ubuntu_setup.md         # Ubuntu 24.04 installation guide
+│
+├── week15/                     # Linux Networking Workshop
+│   ├── Linux_Networking_Exercises.md # Hands-on networking exercises
+│   └── README.md               # Workshop overview and instructions
 │
 └── ...
 ```
@@ -153,6 +157,24 @@ The setup includes:
 - Security considerations
 
 For detailed instructions and setup guides, see the [Week 14 README](/week14/README.md).
+
+## Week 15: Linux Networking Workshop
+
+Week 15 provides a comprehensive hands-on workshop for Linux networking concepts and skills. The workshop includes:
+
+- Network interface configuration and management
+- Static and dynamic IP addressing
+- DNS configuration and troubleshooting
+- ARP and network discovery techniques
+- Firewall configuration and security
+- Network monitoring and diagnostics
+- systemd-networkd configuration
+- Network routing fundamentals
+- Network namespaces and advanced concepts
+
+The workshop is structured as a series of practical exercises that build on each other, providing both theoretical knowledge and hands-on experience with essential Linux networking tools and concepts.
+
+For the complete set of exercises and instructions, see the [Linux Networking Exercises](/week15/Linux_Networking_Exercises.md).
 
 ---
 
