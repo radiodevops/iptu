@@ -176,6 +176,22 @@ The workshop is structured as a series of practical exercises that build on each
 
 For the complete set of exercises and instructions, see the [Linux Networking Exercises](/week15/Linux_Networking_Exercises.md).
 
+## Week 16: Azure Infrastructure as Code (IaC) and Automation
+
+Week 16 demonstrates how to provision and configure Azure infrastructure using multiple modern automation tools:
+
+- **Terraform**: Declarative VM provisioning with networking and SSH access
+- **Pulumi (TypeScript)**: Modern, code-driven VM provisioning with TypeScript, including troubleshooting for TypeScript/Pulumi issues
+- **Ansible**: Automated configuration of provisioned VMs (Nginx installation, service management, custom index page)
+
+**Key Features:**
+- Example IaC code for both Terraform and Pulumi, with clear separation
+- Automated inventory generation for Ansible from Terraform/Pulumi outputs
+- Robust troubleshooting and workflow documentation for cloud, IaC, and Ansible
+- SSH key management and Azure authentication guidance
+
+For detailed step-by-step instructions, troubleshooting, and prerequisites, see the [Week 16 README](/week16/README.md).
+
 ---
 
 For questions, improvements, or additional scenarios, please contact the instructor or open an issue in your course repository.
@@ -227,4 +243,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Last Updated
 
-May 15, 2025
+May 20, 2025

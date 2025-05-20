@@ -1,0 +1,19 @@
+---
+all:
+  children:
+    azure_vms:
+      children:
+        terraform_vms:
+          hosts:
+            terraform_vm:
+              ansible_host: "{{ terraform_vm_public_ip }}"
+              ansible_user: "{{ terraform_vm_username }}"
+              ansible_ssh_private_key_file: "~/.ssh/ubuntu-itpu_key.pem"
+        pulumi_vms:
+          hosts:
+            pulumi_vm:
+              ansible_host: "{{ pulumi_vm_public_ip }}"
+              ansible_user: "{{ pulumi_vm_username }}"
+              ansible_ssh_private_key_file: "~/.ssh/ubuntu-itpu_key.pem"
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
