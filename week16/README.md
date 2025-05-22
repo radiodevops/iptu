@@ -1,12 +1,14 @@
-# Azure VM Provisioning with IaC Tools
+# Cloud Infrastructure Provisioning with IaC Tools
 
-This project demonstrates how to provision Azure VMs using different Infrastructure as Code (IaC) tools (Terraform and Pulumi) and configure them using Ansible.
+This project demonstrates how to provision cloud infrastructure using different Infrastructure as Code (IaC) tools (Terraform, Pulumi, and AWS CDK) and configure them using Ansible. The project provisions VMs on Azure (using Terraform and Pulumi) and EC2 instances on AWS (using CDK).
 
 ## Prerequisites
 
-- Azure CLI installed and authenticated (`az login`)
+- Azure CLI installed and authenticated (`az login`) for Azure deployments
+- AWS CLI installed and configured for AWS deployments
 - Terraform (v1.0.0+)
 - Pulumi CLI and Node.js (v16+)
+- AWS CDK v2 (`npm install -g aws-cdk`) for AWS deployments
 - TypeScript (v4.9+)
 - Ansible (v2.9+)
 - SSH key pair named `ubuntu-itpu_key` in `~/.ssh/` directory
@@ -19,7 +21,16 @@ week16/
 │   ├── install_nginx.yml         # Ansible playbook to install Nginx
 │   ├── inventory.yml             # Main Ansible inventory file
 │   ├── pulumi_inventory.sh       # Script to generate Pulumi inventory
-│   └── terraform_inventory.sh    # Script to generate Terraform inventory
+│   ├── terraform_inventory.sh    # Script to generate Terraform inventory
+│   └── cdk_inventory.sh          # Script to generate CDK inventory
+├── cdk/
+│   ├── bin/
+│   │   └── ec2-stack.ts          # CDK app entry point
+│   ├── lib/
+│   │   └── ec2-stack.ts          # EC2 stack definition
+│   ├── cdk.json                  # CDK configuration
+│   ├── package.json              # Node.js dependencies
+│   └── tsconfig.json             # TypeScript configuration
 ├── pulumi/
 │   ├── index.ts                  # Pulumi TypeScript code for Azure VM
 │   ├── package.json              # Node.js dependencies
@@ -84,67 +95,103 @@ pulumi up
 pulumi stack output
 ```
 
-## Step 3: Generate Ansible Inventory from Terraform and Pulumi
+## Step 3: Provision AWS Resources with CDK
+
+```bash
+# Navigate to the CDK directory
+cd cdk
+
+# Install dependencies
+npm install
+
+# Bootstrap CDK (first time only)
+cdk bootstrap
+
+# Deploy the stack
+cdk deploy
+
+# Once completed, output the EC2 instance information
+aws cloudformation describe-stacks --stack-name ItpuEc2Stack --query "Stacks[0].Outputs"
+
+# Alternatively, specify profile and region
+# cdk deploy --profile dev --region us-east-1
+```
+
+## Step 4: Generate Ansible Inventory from Terraform, Pulumi, and CDK
 
 ```bash
 # Navigate to the Ansible directory
 cd ansible
 
 # Make the scripts executable
-chmod +x terraform_inventory.sh pulumi_inventory.sh
+chmod +x terraform_inventory.sh pulumi_inventory.sh cdk_inventory.sh
 
 # Generate inventory from Terraform outputs
 ./terraform_inventory.sh
 
 # Generate inventory from Pulumi outputs
 ./pulumi_inventory.sh
+
+# Generate inventory from CDK outputs
+./cdk_inventory.sh
+# Or specify profile and region for CDK
+# ./cdk_inventory.sh dev us-east-1
 ```
 
-## Step 4: Run Ansible Playbook to Install Nginx
+## Step 5: Run Ansible Playbook to Install Nginx
 
 ```bash
-# First, include the generated inventory files
-ansible-playbook install_nginx.yml -i inventory.yml --extra-vars "@terraform_inventory.yml" --extra-vars "@pulumi_inventory.yml"
+# Include all generated inventory files
+ansible-playbook install_nginx.yml -i inventory.yml --extra-vars "@terraform_inventory.yml" --extra-vars "@pulumi_inventory.yml" --extra-vars "@cdk_inventory.yml"
 ```
 
 After running the playbook, Nginx will be installed and started on both VMs. You can access the web server using the public IP addresses of the VMs.
 
 ## Verifying the Setup
 
-1. Check if the VMs are running in the Azure portal
-2. SSH into the VMs using: `ssh -i ~/.ssh/ubuntu-itpu_key azureuser@<VM_PUBLIC_IP>`
-3. Access the Nginx web server: `http://<VM_PUBLIC_IP>` in your browser
+1. Check if the VMs are running in the Azure portal or EC2 instances in AWS Management Console
+2. SSH into the Azure VMs using: `ssh -i ~/.ssh/ubuntu-itpu_key azureuser@<VM_PUBLIC_IP>`
+3. SSH into the AWS EC2 instances using: `ssh -i ~/.ssh/ubuntu-itpu_key ubuntu@<EC2_PUBLIC_IP>`
+4. Access the Nginx web server: `http://<VM_PUBLIC_IP>` in your browser
 
 ## Cleanup
 
-To avoid unexpected Azure charges, remember to destroy the resources when they're no longer needed:
+To avoid unexpected cloud charges, remember to destroy the resources when they're no longer needed:
 
 ```bash
-# For Terraform resources
+# For Terraform resources (Azure)
 cd terraform
 terraform destroy
 
-# For Pulumi resources
+# For Pulumi resources (Azure)
 cd pulumi
 pulumi destroy
+
+# For CDK resources (AWS)
+cd cdk
+cdk destroy
+# Or with specific profile and region
+# AWS_PROFILE=dev AWS_REGION=us-east-1 cdk destroy
 ```
 
 ## Notes
 
 - The SSH key `ubuntu-itpu_key` must exist in your `~/.ssh/` directory
-- Both VMs are configured with Ubuntu 24.04, 2 vCPUs, 4 GB RAM, and 20 GB disk
-- The Nginx configuration includes a custom index page showing the VM details
+- Azure VMs are configured with Ubuntu 24.04, 2 vCPUs, 4 GB RAM, and 20 GB disk
+- AWS EC2 instance is configured with Ubuntu 24.04, 2 vCPUs, 2 GB RAM, and 30 GB disk
+- The Nginx configuration includes a custom index page showing the VM/instance details
 - Make sure Azure CLI is authenticated before running Terraform or Pulumi commands
-- If you encounter TypeScript errors in the Pulumi configuration:
-  - Ensure you have run `npm install` in the pulumi directory
+- Make sure AWS CLI is configured with proper credentials before running CDK commands
+- If you encounter TypeScript errors in the Pulumi or CDK configuration:
+  - Ensure you have run `npm install` in the respective directory
   - Check that `tsconfig.json` exists and is properly configured
   - Verify that the package.json has all the required dependencies and types
 
 ## Troubleshooting
 
-### Pulumi TypeScript Issues
+### Pulumi and CDK TypeScript Issues
 If you see errors like "Cannot find module '@pulumi/pulumi' or its corresponding type declarations", make sure to:
-1. Run `npm install` in the pulumi directory
+1. Run `npm install` in the respective directory (pulumi or cdk)
 2. Check that your TypeScript version is compatible (v4.9+ recommended)
 3. Verify that the tsconfig.json file exists and is properly configured
 
@@ -159,3 +206,9 @@ If you encounter authentication issues:
 1. Run `az login` to authenticate with Azure
 2. Verify your subscription with `az account show`
 3. Set a specific subscription if needed: `az account set --subscription <ID>`
+
+### AWS Authentication
+If you encounter authentication issues:
+1. Configure AWS CLI with `aws configure`
+2. Verify your configuration with `aws sts get-caller-identity`
+3. Set a specific profile if needed: `export AWS_PROFILE=dev`
