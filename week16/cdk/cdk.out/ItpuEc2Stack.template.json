@@ -1,0 +1,496 @@
+{
+ "Description": "ITPU EC2 instance with CDK (Profile: default, Region: eu-north-1)",
+ "Resources": {
+  "ItpuVpc5EB9551E": {
+   "Type": "AWS::EC2::VPC",
+   "Properties": {
+    "CidrBlock": "10.0.0.0/16",
+    "EnableDnsHostnames": true,
+    "EnableDnsSupport": true,
+    "InstanceTenancy": "default",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "ItpuEc2Stack/ItpuVpc"
+     },
+     {
+      "Key": "profile",
+      "Value": "default"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ItpuEc2Stack/ItpuVpc/Resource"
+   }
+  },
+  "ItpuVpcpublicSubnet1Subnet707DEBF7": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "eu-north-1a",
+    "CidrBlock": "10.0.0.0/24",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "public"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "ItpuEc2Stack/ItpuVpc/publicSubnet1"
+     },
+     {
+      "Key": "profile",
+      "Value": "default"
+     }
+    ],
+    "VpcId": {
+     "Ref": "ItpuVpc5EB9551E"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ItpuEc2Stack/ItpuVpc/publicSubnet1/Subnet"
+   }
+  },
+  "ItpuVpcpublicSubnet1RouteTable5EEB6472": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "ItpuEc2Stack/ItpuVpc/publicSubnet1"
+     },
+     {
+      "Key": "profile",
+      "Value": "default"
+     }
+    ],
+    "VpcId": {
+     "Ref": "ItpuVpc5EB9551E"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ItpuEc2Stack/ItpuVpc/publicSubnet1/RouteTable"
+   }
+  },
+  "ItpuVpcpublicSubnet1RouteTableAssociation82737888": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "ItpuVpcpublicSubnet1RouteTable5EEB6472"
+    },
+    "SubnetId": {
+     "Ref": "ItpuVpcpublicSubnet1Subnet707DEBF7"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ItpuEc2Stack/ItpuVpc/publicSubnet1/RouteTableAssociation"
+   }
+  },
+  "ItpuVpcpublicSubnet1DefaultRouteDE13D9AE": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "ItpuVpcIGW5C3B63DC"
+    },
+    "RouteTableId": {
+     "Ref": "ItpuVpcpublicSubnet1RouteTable5EEB6472"
+    }
+   },
+   "DependsOn": [
+    "ItpuVpcVPCGWC7F46992"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ItpuEc2Stack/ItpuVpc/publicSubnet1/DefaultRoute"
+   }
+  },
+  "ItpuVpcpublicSubnet2SubnetC07CBE92": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "eu-north-1b",
+    "CidrBlock": "10.0.1.0/24",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "public"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "ItpuEc2Stack/ItpuVpc/publicSubnet2"
+     },
+     {
+      "Key": "profile",
+      "Value": "default"
+     }
+    ],
+    "VpcId": {
+     "Ref": "ItpuVpc5EB9551E"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ItpuEc2Stack/ItpuVpc/publicSubnet2/Subnet"
+   }
+  },
+  "ItpuVpcpublicSubnet2RouteTable1DF0B64C": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "ItpuEc2Stack/ItpuVpc/publicSubnet2"
+     },
+     {
+      "Key": "profile",
+      "Value": "default"
+     }
+    ],
+    "VpcId": {
+     "Ref": "ItpuVpc5EB9551E"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ItpuEc2Stack/ItpuVpc/publicSubnet2/RouteTable"
+   }
+  },
+  "ItpuVpcpublicSubnet2RouteTableAssociation3395C1A5": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "ItpuVpcpublicSubnet2RouteTable1DF0B64C"
+    },
+    "SubnetId": {
+     "Ref": "ItpuVpcpublicSubnet2SubnetC07CBE92"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ItpuEc2Stack/ItpuVpc/publicSubnet2/RouteTableAssociation"
+   }
+  },
+  "ItpuVpcpublicSubnet2DefaultRouteC2DE189A": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "ItpuVpcIGW5C3B63DC"
+    },
+    "RouteTableId": {
+     "Ref": "ItpuVpcpublicSubnet2RouteTable1DF0B64C"
+    }
+   },
+   "DependsOn": [
+    "ItpuVpcVPCGWC7F46992"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ItpuEc2Stack/ItpuVpc/publicSubnet2/DefaultRoute"
+   }
+  },
+  "ItpuVpcIGW5C3B63DC": {
+   "Type": "AWS::EC2::InternetGateway",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "ItpuEc2Stack/ItpuVpc"
+     },
+     {
+      "Key": "profile",
+      "Value": "default"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ItpuEc2Stack/ItpuVpc/IGW"
+   }
+  },
+  "ItpuVpcVPCGWC7F46992": {
+   "Type": "AWS::EC2::VPCGatewayAttachment",
+   "Properties": {
+    "InternetGatewayId": {
+     "Ref": "ItpuVpcIGW5C3B63DC"
+    },
+    "VpcId": {
+     "Ref": "ItpuVpc5EB9551E"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ItpuEc2Stack/ItpuVpc/VPCGW"
+   }
+  },
+  "ItpuSecurityGroup82CDAFBD": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "Allow SSH (TCP port 22) and HTTP (TCP port 80) in",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow SSH access from anywhere",
+      "FromPort": 22,
+      "IpProtocol": "tcp",
+      "ToPort": 22
+     },
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow HTTP access from anywhere",
+      "FromPort": 80,
+      "IpProtocol": "tcp",
+      "ToPort": 80
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "profile",
+      "Value": "default"
+     }
+    ],
+    "VpcId": {
+     "Ref": "ItpuVpc5EB9551E"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ItpuEc2Stack/ItpuSecurityGroup/Resource"
+   }
+  },
+  "ItpuKeyPair": {
+   "Type": "AWS::EC2::KeyPair",
+   "Properties": {
+    "KeyName": "itpu-cdk-key-default",
+    "PublicKeyMaterial": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPDXJ6dZ4QKBF9qA1I++MLd7QP7z7n0gOVVVry+ymCQH\n",
+    "Tags": [
+     {
+      "Key": "profile",
+      "Value": "default"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ItpuEc2Stack/ItpuKeyPair"
+   }
+  },
+  "ItpuInstanceInstanceRole2D944EC5": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ec2.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/AmazonSSMManagedInstanceCore"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "Environment",
+      "Value": "Development"
+     },
+     {
+      "Key": "Name",
+      "Value": "itpu-ec2-default"
+     },
+     {
+      "Key": "profile",
+      "Value": "default"
+     },
+     {
+      "Key": "Project",
+      "Value": "ITPU"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ItpuEc2Stack/ItpuInstance/InstanceRole/Resource"
+   }
+  },
+  "ItpuInstanceInstanceProfile13E7DAF9": {
+   "Type": "AWS::IAM::InstanceProfile",
+   "Properties": {
+    "Roles": [
+     {
+      "Ref": "ItpuInstanceInstanceRole2D944EC5"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ItpuEc2Stack/ItpuInstance/InstanceProfile"
+   }
+  },
+  "ItpuInstance15CD4D16": {
+   "Type": "AWS::EC2::Instance",
+   "Properties": {
+    "AvailabilityZone": "eu-north-1a",
+    "BlockDeviceMappings": [
+     {
+      "DeviceName": "/dev/sda1",
+      "Ebs": {
+       "VolumeSize": 30,
+       "VolumeType": "gp3"
+      }
+     }
+    ],
+    "IamInstanceProfile": {
+     "Ref": "ItpuInstanceInstanceProfile13E7DAF9"
+    },
+    "ImageId": {
+     "Ref": "SsmParameterValueawsservicecanonicalubuntuserver2204stablecurrentamd64hvmebsgp2amiidC96584B6F00A464EAD1953AFF4B05118Parameter"
+    },
+    "InstanceType": "t3.small",
+    "KeyName": "itpu-cdk-key-default",
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "ItpuSecurityGroup82CDAFBD",
+       "GroupId"
+      ]
+     }
+    ],
+    "SubnetId": {
+     "Ref": "ItpuVpcpublicSubnet1Subnet707DEBF7"
+    },
+    "Tags": [
+     {
+      "Key": "Environment",
+      "Value": "Development"
+     },
+     {
+      "Key": "Name",
+      "Value": "itpu-ec2-default"
+     },
+     {
+      "Key": "profile",
+      "Value": "default"
+     },
+     {
+      "Key": "Project",
+      "Value": "ITPU"
+     }
+    ],
+    "UserData": {
+     "Fn::Base64": "#!/bin/bash"
+    }
+   },
+   "DependsOn": [
+    "ItpuInstanceInstanceRole2D944EC5"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ItpuEc2Stack/ItpuInstance/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/12OT4+CMBDFP4v3UoWL8Wg8GLMHGzBeN0Mds6MwJe1UQgjffYPgkuzpvfnNnzeZTndbvVlBGxJ7eyYVlbovBOxTQRu+e7SZ7q+NVYc7X81BmVhWZItYMsrIFpe7KHiBssKFL2wfgrMEQo7/hkdzYkHPKEcQbKGbY+ZqLwL2p0YWVaCNnqQ7ehebd8B/8IWdAfLqxEGA7Xx98oMiqHWfu+m5j37axrs7VTgMKsfgop+WDXioUdCPxTlKE2VQ7G6oH2H9yjKdpnqzegSixEcWqlHnk/4Cx337EVUBAAA="
+   },
+   "Metadata": {
+    "aws:cdk:path": "ItpuEc2Stack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Parameters": {
+  "SsmParameterValueawsservicecanonicalubuntuserver2204stablecurrentamd64hvmebsgp2amiidC96584B6F00A464EAD1953AFF4B05118Parameter": {
+   "Type": "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>",
+   "Default": "/aws/service/canonical/ubuntu/server/22.04/stable/current/amd64/hvm/ebs-gp2/ami-id"
+  },
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Outputs": {
+  "InstancePublicIp": {
+   "Description": "Public IP address of the EC2 instance",
+   "Value": {
+    "Fn::GetAtt": [
+     "ItpuInstance15CD4D16",
+     "PublicIp"
+    ]
+   },
+   "Export": {
+    "Name": "ItpuCdkInstancePublicIp"
+   }
+  },
+  "InstanceHostname": {
+   "Description": "Instance ID of the EC2 instance",
+   "Value": {
+    "Ref": "ItpuInstance15CD4D16"
+   },
+   "Export": {
+    "Name": "ItpuCdkInstanceId"
+   }
+  },
+  "InstanceUsername": {
+   "Description": "Username for the EC2 instance",
+   "Value": "ubuntu",
+   "Export": {
+    "Name": "ItpuCdkInstanceUsername"
+   }
+  },
+  "AwsProfile": {
+   "Description": "AWS profile used for deployment",
+   "Value": "default",
+   "Export": {
+    "Name": "ItpuCdkAwsProfile"
+   }
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

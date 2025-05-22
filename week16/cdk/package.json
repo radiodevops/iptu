@@ -1,0 +1,28 @@
+{
+  "name": "cdk",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "cdk": "cdk",
+    "deploy": "cdk deploy",
+    "deploy:dev": "AWS_PROFILE=dev AWS_REGION=us-east-1 cdk deploy",
+    "deploy:prod": "AWS_PROFILE=prod AWS_REGION=us-west-2 cdk deploy",
+    "synth": "cdk synth",
+    "synth:dev": "AWS_PROFILE=dev AWS_REGION=us-east-1 cdk synth",
+    "synth:prod": "AWS_PROFILE=prod AWS_REGION=us-west-2 cdk synth"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "AWS CDK project for EC2 instance provisioning",
+  "dependencies": {
+    "@types/node": "^22.15.21",
+    "aws-cdk-lib": "^2.197.0",
+    "constructs": "^10.4.2",
+    "source-map-support": "^0.5.21",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}

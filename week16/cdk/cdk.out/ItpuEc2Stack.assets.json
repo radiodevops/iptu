@@ -1,0 +1,21 @@
+{
+  "version": "41.0.0",
+  "files": {
+    "09f5f0a22704561793a3c27a20fe7394c22dc9ad768f7c4bc30ebb834b006fe1": {
+      "displayName": "ItpuEc2Stack Template",
+      "source": {
+        "path": "ItpuEc2Stack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "299709544609-eu-north-1": {
+          "bucketName": "cdk-hnb659fds-assets-299709544609-eu-north-1",
+          "objectKey": "09f5f0a22704561793a3c27a20fe7394c22dc9ad768f7c4bc30ebb834b006fe1.json",
+          "region": "eu-north-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::299709544609:role/cdk-hnb659fds-file-publishing-role-299709544609-eu-north-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

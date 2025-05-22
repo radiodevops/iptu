@@ -15,5 +15,13 @@ all:
               ansible_host: "{{ pulumi_vm_public_ip }}"
               ansible_user: "{{ pulumi_vm_username }}"
               ansible_ssh_private_key_file: "~/.ssh/ubuntu-itpu_key.pem"
+    aws_vms:
+      children:
+        cdk_vms:
+          hosts:
+            cdk_vm:
+              ansible_host: "{{ cdk_vm_public_ip }}"
+              ansible_user: "{{ cdk_vm_username }}"
+              ansible_ssh_private_key_file: "~/.ssh/ubuntu-itpu_key.pem"
   vars:
     ansible_python_interpreter: /usr/bin/python3

@@ -1,0 +1,206 @@
+{
+  "version": "41.0.0",
+  "artifacts": {
+    "ItpuEc2Stack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "ItpuEc2Stack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "ItpuEc2Stack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://299709544609/eu-north-1",
+      "properties": {
+        "templateFile": "ItpuEc2Stack.template.json",
+        "terminationProtection": false,
+        "tags": {
+          "profile": "default"
+        },
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::299709544609:role/cdk-hnb659fds-deploy-role-299709544609-eu-north-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::299709544609:role/cdk-hnb659fds-cfn-exec-role-299709544609-eu-north-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-299709544609-eu-north-1/09f5f0a22704561793a3c27a20fe7394c22dc9ad768f7c4bc30ebb834b006fe1.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "ItpuEc2Stack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::299709544609:role/cdk-hnb659fds-lookup-role-299709544609-eu-north-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "ItpuEc2Stack.assets"
+      ],
+      "metadata": {
+        "/ItpuEc2Stack": [
+          {
+            "type": "aws:cdk:stack-tags",
+            "data": [
+              {
+                "Key": "profile",
+                "Value": "default"
+              }
+            ]
+          }
+        ],
+        "/ItpuEc2Stack/ItpuVpc/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ItpuVpc5EB9551E"
+          }
+        ],
+        "/ItpuEc2Stack/ItpuVpc/publicSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ItpuVpcpublicSubnet1Subnet707DEBF7"
+          }
+        ],
+        "/ItpuEc2Stack/ItpuVpc/publicSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ItpuVpcpublicSubnet1RouteTable5EEB6472"
+          }
+        ],
+        "/ItpuEc2Stack/ItpuVpc/publicSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ItpuVpcpublicSubnet1RouteTableAssociation82737888"
+          }
+        ],
+        "/ItpuEc2Stack/ItpuVpc/publicSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ItpuVpcpublicSubnet1DefaultRouteDE13D9AE"
+          }
+        ],
+        "/ItpuEc2Stack/ItpuVpc/publicSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ItpuVpcpublicSubnet2SubnetC07CBE92"
+          }
+        ],
+        "/ItpuEc2Stack/ItpuVpc/publicSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ItpuVpcpublicSubnet2RouteTable1DF0B64C"
+          }
+        ],
+        "/ItpuEc2Stack/ItpuVpc/publicSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ItpuVpcpublicSubnet2RouteTableAssociation3395C1A5"
+          }
+        ],
+        "/ItpuEc2Stack/ItpuVpc/publicSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ItpuVpcpublicSubnet2DefaultRouteC2DE189A"
+          }
+        ],
+        "/ItpuEc2Stack/ItpuVpc/IGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ItpuVpcIGW5C3B63DC"
+          }
+        ],
+        "/ItpuEc2Stack/ItpuVpc/VPCGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ItpuVpcVPCGWC7F46992"
+          }
+        ],
+        "/ItpuEc2Stack/ItpuSecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ItpuSecurityGroup82CDAFBD"
+          }
+        ],
+        "/ItpuEc2Stack/ItpuKeyPair": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ItpuKeyPair"
+          }
+        ],
+        "/ItpuEc2Stack/ItpuInstance/InstanceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ItpuInstanceInstanceRole2D944EC5"
+          }
+        ],
+        "/ItpuEc2Stack/ItpuInstance/InstanceProfile": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ItpuInstanceInstanceProfile13E7DAF9"
+          }
+        ],
+        "/ItpuEc2Stack/ItpuInstance/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ItpuInstance15CD4D16"
+          }
+        ],
+        "/ItpuEc2Stack/SsmParameterValue:--aws--service--canonical--ubuntu--server--22.04--stable--current--amd64--hvm--ebs-gp2--ami-id:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SsmParameterValueawsservicecanonicalubuntuserver2204stablecurrentamd64hvmebsgp2amiidC96584B6F00A464EAD1953AFF4B05118Parameter"
+          }
+        ],
+        "/ItpuEc2Stack/InstancePublicIp": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "InstancePublicIp"
+          }
+        ],
+        "/ItpuEc2Stack/InstanceHostname": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "InstanceHostname"
+          }
+        ],
+        "/ItpuEc2Stack/InstanceUsername": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "InstanceUsername"
+          }
+        ],
+        "/ItpuEc2Stack/AwsProfile": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AwsProfile"
+          }
+        ],
+        "/ItpuEc2Stack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/ItpuEc2Stack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/ItpuEc2Stack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "ItpuEc2Stack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  },
+  "minimumCliVersion": "2.1005.0"
+}
